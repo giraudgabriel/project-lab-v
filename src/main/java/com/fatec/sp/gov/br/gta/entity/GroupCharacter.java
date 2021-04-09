@@ -38,16 +38,16 @@ public class GroupCharacter{
         return group;
     }
 
-    public Group setGroup(Group group) {
-        this.group = group;
+    public void setGroup(Group group) {
+         this.group = group;
     }
    
     public Character getCharacter() {
         return character;
     }
 
-    public Character setCharacter(Character character) {
-        this.character = character;
+    public void setCharacter(Character character) {
+         this.character = character;
     }
    
 }

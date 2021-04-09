@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.fatec.sp.gov.br.gta.entity.Character;
 import com.fatec.sp.gov.br.gta.entity.Group;
-import com.fatec.sp.gov.br.gta.entity.CharacterGroup;
+import com.fatec.sp.gov.br.gta.entity.GroupCharacter;
 import com.fatec.sp.gov.br.gta.repository.GroupRepository;
 import com.fatec.sp.gov.br.gta.repository.CharacterRepository;
 import com.fatec.sp.gov.br.gta.service.CharacterService;
