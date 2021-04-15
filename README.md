@@ -1,1 +1,1 @@
-# project-lab-v
+# Project Lab V - JPA - Spring Boot
