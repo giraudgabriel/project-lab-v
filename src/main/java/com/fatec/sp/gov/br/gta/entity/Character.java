@@ -14,21 +14,21 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "character")
+@Table(name = "cha_character")
 public class Character {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "cha_id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "cha_name", nullable = false)
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "group_character",
-		joinColumns = { @JoinColumn(name = "characterId") },
-		inverseJoinColumns = { @JoinColumn(name = "groupId") })
+	@JoinTable(name = "grc_group_character",
+		joinColumns = { @JoinColumn(name = "grc_character_id") },
+		inverseJoinColumns = { @JoinColumn(name = "grc_group_id") })
 	private Set<Group> groups;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "character")

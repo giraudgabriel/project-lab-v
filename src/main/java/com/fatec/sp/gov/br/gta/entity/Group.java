@@ -16,18 +16,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
 
 @Entity
-@Table(name = "group")
+@Table(name = "gro_group")
 public class Group {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "gro_id")
     private Long id;
    
-    @Column(name = "code")
+    @Column(name = "gro_code")
     private String code;
 
-    @Column(name = "name")
+    @Column(name = "gro_name")
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "groups")

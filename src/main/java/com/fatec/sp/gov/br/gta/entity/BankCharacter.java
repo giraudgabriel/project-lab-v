@@ -12,19 +12,19 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "bank_character")
+@Table(name = "bkc_bank_character")
 public class BankCharacter {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "bkc_id")
     private Long id;
 
-    @Column(name = "balance")
+    @Column(name = "bkc_balance")
     private Long balance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "characterId")
+    @ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "bkc_character_id", referencedColumnName = "cha_id")
 	private Character character;
 
     public Long getId() {
