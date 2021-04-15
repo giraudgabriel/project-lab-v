@@ -30,7 +30,7 @@ public class Group {
     @Column(name = "gro_name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "groups")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
     public Set<Character> characters;
 
     public Long getId() {

@@ -36,3 +36,8 @@ create table if not exists bkc_bank_character(
     primary key(bkc_id),
     constraint fk_bank_character foreign key (bkc_character_id) references cha_character(cha_id)
 );
+
+insert into cha_character (cha_name) values ('Giraud');
+insert into gro_group (gro_name, gro_code) values ('Polícia', 'policia');
+insert into grc_group_character (grc_character_id, grc_group_id) values (1,1);
+insert into bkc_bank_character (bkc_balance, bkc_character_id) values (5000,1);

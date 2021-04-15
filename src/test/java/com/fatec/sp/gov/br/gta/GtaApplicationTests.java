@@ -41,7 +41,47 @@ class gtaApplicationTests {
 
     
     @Test
-    void testaBusca(){
-        assertEquals("", "");
+    void testaInserirCharacter(){
+        Character character = characterService.adicionarCharacter("Ronaldo");
+        assertNotNull(character.getId());
     }
+
+    @Test
+    void testaBuscarCharacterPorNome(){
+        Character character = characterRepo.findCharacterByName("Giraud");
+        assertNotNull(character.getId());
+    }
+
+    @Test
+    void testaBuscarGroupPorNome(){
+        Group group = groupRepo.findGroupByName("Polícia");
+        assertNotNull(group.getId());
+    }
+
+    @Test
+    void testaBuscarGroupPorCode(){
+        Group group = groupRepo.findGroupByCode("policia");
+        assertNotNull(group.getId());
+    }
+
+    @Test
+    void testaBuscarCharactersPorGroupCode(){
+        Set<Character> characters = groupRepo.findCharactersFromGroupCode("policia");
+        assertNotNull(characters);
+    }
+
+    @Test
+    void testaBuscarCharactersPorGroupName(){
+        Set<Character> characters = groupRepo.findCharactersFromGroupName("Polícia");
+        assertNotNull(characters);
+    }
+
+    @Test
+    void testaBuscarBankPorCharacter(){
+        Character character = characterRepo.findCharacterByName("Giraud");
+        assertNotNull(character.getId());
+        BankCharacter bank = bankRepo.findBankCharacterByCharacter(character);
+        assertNotNull(bank.getId());
+    }
+
 }
