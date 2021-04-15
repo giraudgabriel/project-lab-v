@@ -22,8 +22,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
-@Transactional
-@Rollback
 class gtaApplicationTests {
 
     @Autowired
@@ -44,6 +42,10 @@ class gtaApplicationTests {
     void testaInserirCharacter(){
         Character character = characterService.adicionarCharacter("Ronaldo");
         assertNotNull(character.getId());
+        assertNotNull(character.getBank());
+        assertEquals(5000L,character.getBank().getBalance());
+        assertNotNull(character.getBank().getId());
+
     }
 
     @Test

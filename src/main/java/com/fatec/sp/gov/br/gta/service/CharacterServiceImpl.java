@@ -17,20 +17,29 @@ public class CharacterServiceImpl implements CharacterService {
     @Autowired 
     private CharacterRepository characterRepo;
 
+    @Autowired 
+    private BankCharacterRepository bankRepo;
+
     @Override
     @Transactional
     public Character adicionarCharacter(String name) {
 
-        //bank
-        BankCharacter bank = new BankCharacter();
-        bank.setBalance(5000L);
+        Character character = characterRepo.findCharacterByName(name);
+        if(character == null){
+            //character
+            character = new Character();
+            character.setName(name);
+            characterRepo.save(character);
+
+            //bank
+            BankCharacter bank = new BankCharacter();
+            bank.setBalance(5000L);
+            bank.setCharacter(character);
+            bankRepo.save(bank);
+
+            character.setBank(bank);
+        }
         
-        //character
-        Character character = new Character();
-        character.setName(name);
-        character.setBanks(new HashSet<BankCharacter>());
-        character.getBanks().add(bank);
-        characterRepo.save(character);
         return character;
     }
     

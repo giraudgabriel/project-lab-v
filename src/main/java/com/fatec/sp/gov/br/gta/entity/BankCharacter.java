@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
@@ -23,7 +23,7 @@ public class BankCharacter {
     @Column(name = "bkc_balance")
     private Long balance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne
 	@JoinColumn(name = "bkc_character_id", referencedColumnName = "cha_id")
 	private Character character;
 

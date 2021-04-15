@@ -11,7 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 @Table(name = "cha_character")
@@ -31,8 +31,8 @@ public class Character {
 		inverseJoinColumns = { @JoinColumn(name = "grc_group_id") })
 	private Set<Group> groups;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "character")
-	private Set<BankCharacter> banks;
+    @OneToOne(mappedBy = "character")
+	private BankCharacter bank;
 
     public Long getId() {
         return id;
@@ -58,11 +58,11 @@ public class Character {
         this.groups = groups;
     }
     
-     public Set<BankCharacter> getBanks() {
-        return banks;
+     public BankCharacter getBank() {
+        return bank;
     }
 
-    public void setBanks(Set<BankCharacter> banks) {
-        this.banks = banks;
+    public void setBank(BankCharacter bank) {
+        this.bank = bank;
     }
 }
