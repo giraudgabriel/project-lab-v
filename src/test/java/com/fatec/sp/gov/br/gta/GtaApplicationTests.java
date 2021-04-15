@@ -8,8 +8,10 @@ import java.util.Set;
 
 import com.fatec.sp.gov.br.gta.entity.Character;
 import com.fatec.sp.gov.br.gta.entity.Group;
+import com.fatec.sp.gov.br.gta.entity.BankCharacter;
 import com.fatec.sp.gov.br.gta.repository.GroupRepository;
 import com.fatec.sp.gov.br.gta.repository.CharacterRepository;
+import com.fatec.sp.gov.br.gta.repository.BankCharacterRepository;
 import com.fatec.sp.gov.br.gta.service.CharacterService;
 import com.fatec.sp.gov.br.gta.service.CharacterServiceImpl;
 
@@ -29,6 +31,10 @@ class gtaApplicationTests {
 
     @Autowired
     private GroupRepository groupRepo;
+
+    @Autowired
+    private BankCharacterRepository bankRepo;
+
 
     @Autowired
     private CharacterService characterService;

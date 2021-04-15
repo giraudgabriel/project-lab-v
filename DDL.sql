@@ -1,3 +1,4 @@
+drop schema if exists gta;
 create schema if not exists gta;
 
 use gta;
@@ -24,8 +25,8 @@ create table if not exists group_character(
     characterId bigint not null,
     groupId bigint not null,
     primary key(id),
-    foreign key (groupId) references `group`(id),  
-    foreign key (characterId) references `character`(id)
+    constraint fk_group_character_group foreign key (groupId) references `group`(id),  
+    constraint fk_group_character_character foreign key (characterId) references `character`(id)
 );
 
 create table if not exists bank_character(
@@ -33,5 +34,5 @@ create table if not exists bank_character(
     balance bigint not null,
     characterId bigint not null,
     primary key(id),
-    foreign key (characterId) references `character`(id)
+    constraint fk_bank_character foreign key (characterId) references `character`(id)
 );

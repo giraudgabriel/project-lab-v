@@ -23,8 +23,8 @@ public class BankCharacter {
     @Column(name = "balance")
     private Long balance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "characterId", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "characterId")
 	private Character character;
 
     public Long getId() {
