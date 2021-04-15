@@ -17,4 +17,6 @@ public interface GroupRepository extends JpaRepository<Group,Long>{
     public Group findGroupByName(String name);
 
     public Group findGroupByCode(String code);
+
+    public Group findGroupByCodeAndName(String code, String name);
 }

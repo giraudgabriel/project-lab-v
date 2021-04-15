@@ -65,6 +65,12 @@ class gtaApplicationTests {
     }
 
     @Test
+    void testaBuscarGroupPorCodeAndName(){
+        Group group = groupRepo.findGroupByCodeAndName("policia", "Polícia");
+        assertNotNull(group.getId());
+    }
+
+    @Test
     void testaBuscarCharactersPorGroupCode(){
         Set<Character> characters = groupRepo.findCharactersFromGroupCode("policia");
         assertNotNull(characters);
