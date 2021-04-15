@@ -8,7 +8,6 @@ import java.util.Set;
 
 import com.fatec.sp.gov.br.gta.entity.Character;
 import com.fatec.sp.gov.br.gta.entity.Group;
-import com.fatec.sp.gov.br.gta.entity.GroupCharacter;
 import com.fatec.sp.gov.br.gta.repository.GroupRepository;
 import com.fatec.sp.gov.br.gta.repository.CharacterRepository;
 import com.fatec.sp.gov.br.gta.service.CharacterService;
@@ -34,18 +33,9 @@ class gtaApplicationTests {
     @Autowired
     private CharacterService characterService;
 
-	@Test
-	void contextLoads() {
-    }
     
     @Test
     void testaBusca(){
-        assertEquals("");
-    }
-
-    @Test
-    void testaServiceCharacter(){
-        
-        assertNotNull("");
+        assertEquals("", "");
     }
 }

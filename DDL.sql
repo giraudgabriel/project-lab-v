@@ -27,3 +27,11 @@ create table if not exists group_character(
     foreign key (groupId) references `group`(id),  
     foreign key (characterId) references `character`(id)
 );
+
+create table if not exists bank_character(
+    id bigint not null auto_increment,
+    balance bigint not null,
+    characterId bigint not null,
+    primary key(id),
+    foreign key (characterId) references `character`(id)
+);
