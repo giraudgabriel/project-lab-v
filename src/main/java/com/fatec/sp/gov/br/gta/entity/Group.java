@@ -27,7 +27,7 @@ public class Group {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "group")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "groups")
     public Set<Character> characters;
 
     public Long getId() {

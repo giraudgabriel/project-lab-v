@@ -16,8 +16,17 @@ public class Character {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "group_character",
+		joinColumns = { @JoinColumn(name = "characterId") },
+		inverseJoinColumns = { @JoinColumn(name = "groupId") })
+	private Set<Group> groups;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "character")
+	private Set<BankCharacter> banks;
 
     public Long getId() {
         return id;
@@ -34,5 +43,20 @@ public class Character {
     public void setName(String name) {
         this.name = name;
     }
+
+     public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
+    }
     
+     public Set<BankCharacter> getBanks() {
+        return banks;
+    }
+
+    public void setBanks(Set<BankCharacter> banks) {
+        this.banks = banks;
+    }
 }
