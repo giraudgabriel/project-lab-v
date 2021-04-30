@@ -40,7 +40,7 @@ class gtaApplicationTests {
     
     @Test
     void testaInserirCharacter(){
-        Character character = characterService.adicionarCharacter("Ronaldo");
+        Character character = characterService.create("Ronaldo");
         assertNotNull(character.getId());
         assertNotNull(character.getBank());
         assertEquals(5000L,character.getBank().getBalance());
