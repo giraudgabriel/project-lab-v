@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.sp.gov.br.gta.controller.View;
 
 @Entity
 @Table(name = "bkc_bank_character")
@@ -21,6 +23,7 @@ public class BankCharacter {
     private Long id;
 
     @Column(name = "bkc_balance")
+    @JsonView(View.CharacterMain.class)
     private Long balance;
 
     @OneToOne

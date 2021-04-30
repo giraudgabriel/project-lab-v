@@ -17,7 +17,14 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
 
+    @GetMapping(value = "/")
+    @JsonView(View.CharacterMain.class)
+    public List<Character> get(){
+        return characterService.getAll();
+    }
+
     @GetMapping(value = "/all")
+    @JsonView(View.CharacterDto.class)
     public List<Character> getAll(){
         return characterService.getAll();
     }

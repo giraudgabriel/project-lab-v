@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.sp.gov.br.gta.controller.View;
 
 @Entity
 @Table(name = "gro_group")
@@ -22,11 +24,14 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "gro_id")
+    @JsonView(View.CharacterMain.class)
     private Long id;
    
+    @JsonView(View.CharacterDto.class)
     @Column(name = "gro_code")
     private String code;
 
+     @JsonView(View.CharacterMain.class)
     @Column(name = "gro_name")
     private String name;
 
