@@ -5,7 +5,6 @@ import com.fatec.sp.gov.br.gta.entity.Character;
 import com.fatec.sp.gov.br.gta.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 

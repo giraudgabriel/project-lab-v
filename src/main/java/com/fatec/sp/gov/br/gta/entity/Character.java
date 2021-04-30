@@ -36,7 +36,7 @@ public class Character {
 		inverseJoinColumns = { @JoinColumn(name = "grc_group_id") })
 	private Set<Group> groups;
 
-     @JsonView(View.CharacterMain.class)
+    @JsonView(View.CharacterMain.class)
     @OneToOne(mappedBy = "character")
 	private BankCharacter bank;
 

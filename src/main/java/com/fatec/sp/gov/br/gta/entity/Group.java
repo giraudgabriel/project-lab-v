@@ -31,7 +31,7 @@ public class Group {
     @Column(name = "gro_code")
     private String code;
 
-     @JsonView(View.CharacterMain.class)
+    @JsonView(View.CharacterMain.class)
     @Column(name = "gro_name")
     private String name;
 
