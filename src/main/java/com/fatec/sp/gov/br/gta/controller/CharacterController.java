@@ -25,13 +25,13 @@ public class CharacterController {
     @GetMapping(value = "/all")
     @JsonView(View.CharacterDto.class)
     public List<Character> getAll(){
-        return characterService.getAll();
+        return characterService.getAllDto();
     }
 
     @PostMapping
     @JsonView(View.CharacterMain.class)
     public Character create(@RequestBody Character character){ 
-        return characterService.create(character.getName());
+        return characterService.create(character.getName(), character.getPassword());
     }
 
     @PutMapping(value = "/{id}")

@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -28,6 +27,10 @@ public class Character {
     @JsonView(View.CharacterDto.class)
     @Column(name = "cha_name", nullable = false)
     private String name;
+
+    @JsonView(View.CharacterMain.class)
+    @Column(name = "cha_password", nullable = false)
+    private String password;
 
     @JsonView(View.CharacterDto.class)
     @ManyToMany(fetch = FetchType.EAGER)
@@ -55,6 +58,15 @@ public class Character {
     public void setName(String name) {
         this.name = name;
     }
+
+     public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
      public Set<Group> getGroups() {
         return groups;
