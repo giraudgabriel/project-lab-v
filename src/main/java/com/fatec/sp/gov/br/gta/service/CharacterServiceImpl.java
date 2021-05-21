@@ -66,7 +66,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Optional<Character> delete(Long id) {
         Optional<Character> character = characterRepo.findById(id);
         characterRepo.deleteCharacter(id);
@@ -74,7 +74,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("isAuthenticated()")
     public List<Character> getAll() {
         List<Character> characterList = characterRepo.findAll();
         return characterList;
