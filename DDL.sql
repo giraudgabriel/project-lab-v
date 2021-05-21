@@ -42,6 +42,6 @@ insert into cha_character (cha_name, cha_password) values ('Giraud', '$2a$10$i3.
 insert into cha_character (cha_name, cha_password) values ('usuario', '$2a$10$i3.Z8Yv1Fwl0I5SNjdCGkOTRGQjGvHjh/gMZhdc3e7LIovAklqM6C');
 insert into gro_group (gro_name, gro_code) values ('Polícia', 'policia');
 insert into gro_group (gro_name, gro_code) values ('Administrador', 'admin');
-insert into grc_group_character (grc_character_id, grc_group_id) values (1,1);
+insert into grc_group_character (grc_character_id, grc_group_id) values (2,1);
 insert into grc_group_character (grc_character_id, grc_group_id) values (1,2);
 insert into bkc_bank_character (bkc_balance, bkc_character_id) values (5000,1);

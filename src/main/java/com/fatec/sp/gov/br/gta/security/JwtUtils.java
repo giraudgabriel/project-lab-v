@@ -29,12 +29,14 @@ public class JwtUtils {
             userWithoutPass.setRoles(user.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList()).toArray(new String[user.getAuthorities().size()]));
         }
-        String userJson = mapper.writeValueAsString(user);
-        Date agora = new Date();
-        Long hora = 1000L * 60L * 60L;
-        return Jwts.builder().claim("userDetails", userJson).setIssuer("br.gov.sp.fatec").setSubject(user.getName())
-                .setExpiration(new Date(agora.getTime() + hora)).signWith(SignatureAlgorithm.HS512, secretKey)
-                .compact();
+        String usuarioJson = mapper.writeValueAsString(userWithoutPass);
+        Date now = new Date();
+        Long hour = 1000L * 60L * 60L; // Uma hora
+        String token = Jwts.builder().claim("userDetails", usuarioJson).setIssuer("br.gov.sp.fatec")
+                .setSubject(user.getName()).setExpiration(new Date(now.getTime() + hour))
+                .signWith(SignatureAlgorithm.HS512, secretKey).compact();
+
+        return token;
     }
 
     public static Authentication parseToken(String token) throws JsonParseException, JsonMappingException, IOException {

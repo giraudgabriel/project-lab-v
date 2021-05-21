@@ -66,7 +66,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Optional<Character> delete(Long id) {
         Optional<Character> character = characterRepo.findById(id);
         characterRepo.deleteCharacter(id);
@@ -74,14 +74,13 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @PreAuthorize("isAuthenticated()")
     public List<Character> getAll() {
         List<Character> characterList = characterRepo.findAll();
         return characterList;
     }
 
     @Override
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_POLICIA')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'POLICIA')")
     public List<Character> getAllDto() {
         List<Character> characterList = characterRepo.findAll();
         return characterList;
@@ -94,9 +93,8 @@ public class CharacterServiceImpl implements CharacterService {
             throw new UsernameNotFoundException("Usuário " + username + " não encontrado!");
         }
         return User.builder().username(username).password(character.getPassword())
-                .authorities(character.getGroups().stream()
-                    .map(Group::getRole).collect(Collectors.toList())
-                    .toArray(new String[character.getGroups().size()]))
+                .authorities(character.getGroups().stream().map(Group::getRole).collect(Collectors.toList())
+                        .toArray(new String[character.getGroups().size()]))
                 .build();
     }
 }
