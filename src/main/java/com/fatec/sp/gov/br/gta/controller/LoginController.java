@@ -1,5 +1,7 @@
 package com.fatec.sp.gov.br.gta.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fatec.sp.gov.br.gta.security.JwtUtils;
 import com.fatec.sp.gov.br.gta.security.Login;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,14 @@ public class LoginController {
     private AuthenticationManager authManager;
 
     @PostMapping()
-    public Login auth(@RequestBody Login login){
+    public Login auth(@RequestBody Login login) {
         Authentication auth = new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
         auth = authManager.authenticate(auth);
+        try {
+            login.setToken(JwtUtils.generateToken(auth));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return login;
     }
 }

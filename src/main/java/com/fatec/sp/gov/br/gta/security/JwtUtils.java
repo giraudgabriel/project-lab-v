@@ -9,8 +9,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -34,10 +37,14 @@ public class JwtUtils {
                 .compact();
     }
 
-    public static Character parseToken(String token) throws JsonParseException, JsonMappingException, IOException {
+    public static Authentication parseToken(String token) throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         String credentialsJson = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody()
                 .get("userDetails", String.class);
-        return mapper.readValue(credentialsJson, Character.class);
+        Login usuario = mapper.readValue(credentialsJson, Login.class);
+        UserDetails userDetails = User.builder().username(usuario.getUsername()).password("secret")
+                .authorities(usuario.getRoles()).build();
+        return new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword(),
+                userDetails.getAuthorities());
     }
 }

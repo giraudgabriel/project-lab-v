@@ -23,6 +23,9 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+    public void setToken(String token) {
+        this.token = token;
+    }
     public String getToken() {
         return token;
     }
