@@ -4,6 +4,7 @@ import com.fatec.sp.gov.br.gta.entity.Character;
 import com.fatec.sp.gov.br.gta.entity.Group;
 import com.fatec.sp.gov.br.gta.entity.BankCharacter;
 import com.fatec.sp.gov.br.gta.repository.CharacterRepository;
+import com.fatec.sp.gov.br.gta.repository.GroupRepository;
 import com.fatec.sp.gov.br.gta.repository.BankCharacterRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.HashSet;
 import java.util.List;
 
 @Service("characterService")
@@ -26,6 +28,10 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Autowired
     private BankCharacterRepository bankRepo;
+
+    @Autowired
+    private GroupRepository groupRepo;
+    
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -40,6 +46,10 @@ public class CharacterServiceImpl implements CharacterService {
             character = new Character();
             character.setName(name);
             character.setPassword(passwordEncoder.encode(password));
+
+            Group group = groupRepo.findGroupByCode("policia");
+            character.setGroups(new HashSet<Group>());
+            character.getGroups().add(group);
             characterRepo.save(character);
 
             // bank
@@ -67,9 +77,17 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     @PreAuthorize("hasRole('ADMIN')")
+    @Transactional
     public Optional<Character> delete(Long id) {
         Optional<Character> character = characterRepo.findById(id);
-        characterRepo.deleteCharacter(id);
+        if(character.isPresent())
+        {
+            bankRepo.delete(character.get().getBank());
+            character.get().setGroups(null);
+            characterRepo.save(character.get());
+            characterRepo.deleteCharacter(id);
+        }
+        
         return character;
     }
 
