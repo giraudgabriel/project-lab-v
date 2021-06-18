@@ -45,3 +45,4 @@ insert into gro_group (gro_name, gro_code) values ('Administrador', 'admin');
 insert into grc_group_character (grc_character_id, grc_group_id) values (2,1);
 insert into grc_group_character (grc_character_id, grc_group_id) values (1,2);
 insert into bkc_bank_character (bkc_balance, bkc_character_id) values (5000,1);
+insert into bkc_bank_character (bkc_balance, bkc_character_id) values (5000,2);

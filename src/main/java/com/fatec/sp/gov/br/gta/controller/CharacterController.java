@@ -36,8 +36,8 @@ public class CharacterController {
 
     @PutMapping(value = "/{id}")
     @JsonView(View.CharacterDto.class)
-    public Optional<Character> update(@PathVariable(value = "id") Long id, @RequestParam(value = "name") String name){
-        return characterService.update(name, id);
+    public Optional<Character> update(@RequestParam(value = "id") String id, @RequestParam(value = "name") String name){
+        return characterService.update(name, Long.parseLong(id));
 
     }
 
